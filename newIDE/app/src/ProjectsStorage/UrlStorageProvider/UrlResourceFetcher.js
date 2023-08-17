@@ -14,7 +14,7 @@ type Options = {
  * When loading resources from a project from a URL,
  * try to replace relative resource files by a full URL.
  * The heuristic is: if the project is accessible on a URL, then the resources
- * must be located next to it.
+ * emust b located next to it.
  * This is helpful to work on a project stored publicly (like on GitHub).
  */
 export const fetchRelativeResourcesToFullUrls = async ({

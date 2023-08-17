@@ -1,9 +1,7 @@
 // @flow
 import * as React from 'react';
 import { type I18n as I18nType } from '@lingui/core';
-import { type MessageDescriptor } from '../Utils/i18n/MessageDescriptor.flow';
 import { type AppArguments } from '../Utils/Window';
-import { type AuthenticatedUser } from '../Profile/AuthenticatedUserContext';
 import { type MenuItemTemplate } from '../UI/Menu/Menu.flow';
 
 /**
@@ -17,7 +15,6 @@ export type FileMetadata = {|
   version?: string,
   lastModifiedDate?: number,
   name?: string,
-  gameId?: string,
 |};
 
 /**
@@ -35,11 +32,6 @@ export type SaveAsLocation = {|
    * (for example, a local file path is stored only in `fileIdentifier`).
    */
   name?: string,
-  /**
-   * The id of the game. Might be null if no game is published.
-   */
-  gameId?: string,
-
   // New fields can be added if a storage provider needs other things to identify
   // a new location where to save a project to.
 |};
@@ -72,7 +64,6 @@ export type ResourcesActionsMenuBuilder = ResourcesActionsProps => Array<MenuIte
  */
 export type StorageProviderOperations = {|
   // Project opening:
-  onOpenWithPicker?: () => Promise<?FileMetadata>,
   onOpen?: (
     fileMetadata: FileMetadata,
     onProgress?: (progress: number, message: MessageDescriptor) => void
@@ -125,7 +116,7 @@ export type StorageProviderOperations = {|
   onChangeProjectProperty?: (
     project: gdProject,
     fileMetadata: FileMetadata,
-    properties: {| name?: string, gameId?: string |} // In order to synchronize project and cloud project names.
+    properties: {| name?: string |} // In order to synchronize project and cloud project names.
   ) => Promise<boolean>,
 
   // Project auto saving:
@@ -146,26 +137,13 @@ export type StorageProviderOperations = {|
 export type StorageProvider = {|
   internalName: string,
   name: MessageDescriptor,
-  needUserAuthentication?: boolean,
-  hiddenInOpenDialog?: boolean,
-  hiddenInSaveDialog?: boolean,
-  disabled?: boolean,
   renderIcon?: ({| size?: 'small' | 'medium' |}) => React.Node,
   getFileMetadataFromAppArguments?: AppArguments => ?FileMetadata,
-  onRenderNewProjectSaveAsLocationChooser?: (props: {|
-    projectName: string,
-    saveAsLocation: ?SaveAsLocation,
-    setSaveAsLocation: (?SaveAsLocation) => void,
-    newProjectsDefaultFolder?: string,
-  |}) => React.Node,
   createOperations: ({|
     /** Open a dialog (a render function) */
     setDialog: (() => React.Node) => void,
     /** Close the dialog */
     closeDialog: () => void,
-    authenticatedUser: AuthenticatedUser,
   |}) => StorageProviderOperations,
-  createResourceOperations?: ({|
-    authenticatedUser: AuthenticatedUser,
-  |}) => ResourcesActionsMenuBuilder,
+  createResourceOperations?: ResourcesActionsMenuBuilder,
 |};

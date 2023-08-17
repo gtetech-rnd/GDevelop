@@ -383,7 +383,7 @@ const NewProjectSetupDialog = ({
                 <IconButton
                   size="small"
                   onClick={() => setProjectName(generateProjectName())}
-                  tooltip={t`Generate random name`}
+                  tooltip={"Enter your Project Name"}
                   disabled={isLoading}
                 >
                   <Refresh />
@@ -392,7 +392,7 @@ const NewProjectSetupDialog = ({
               autoFocus="desktop"
               maxLength={100}
             />
-            <SelectField
+            {/* <SelectField
               fullWidth
               disabled={isLoading}
               floatingLabelText={<Trans>Where to store this project</Trans>}
@@ -458,7 +458,7 @@ const NewProjectSetupDialog = ({
                 saveAsLocation,
                 setSaveAsLocation,
                 newProjectsDefaultFolder,
-              })}
+              })} */}
             {!selectedExampleShortHeader && (
               <ColumnStackLayout noMargin expand>
                 <DismissableAlertMessage
