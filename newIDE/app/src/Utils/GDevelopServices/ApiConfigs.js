@@ -43,7 +43,7 @@ export const GDevelopBuildApi = {
 
 export const GDevelopUsageApi = {
   baseUrl: isDev
-    ? 'https://api-dev.gdevelop.io/usage'
+    ? 'http://api-dev.gdevelop.io/usage'
     : 'https://api.gdevelop.io/usage',
 };
 

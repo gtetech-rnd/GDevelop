@@ -11,8 +11,6 @@ describe('AdditionalUserInfoDialog', () => {
           ...indieUserProfile,
         })
       ).toBe(true);
-
-      // Everything filled.
       expect(
         shouldAskForAdditionalUserInfo({
           ...indieUserProfile,
