@@ -19,7 +19,6 @@ import { UsernameField, isUsernameValid } from './UsernameField';
 import Checkbox from '../UI/Checkbox';
 import HelpButton from '../UI/HelpButton';
 import Text from '../UI/Text';
-import GDevelopGLogo from '../UI/CustomSvgIcons/GDevelopGLogo';
 import { Column } from '../UI/Grid';
 import Link from '../UI/Link';
 import { useResponsiveWindowWidth } from '../UI/Reponsive/ResponsiveWindowMeasurer';
@@ -89,9 +88,9 @@ export const getPasswordErrorText = (error: ?AuthError) => {
     );
   return undefined;
 };
-
+                
 const CreateAccountDialog = ({
-  onClose,
+  onClose,     
   onGoToLogin,
   onCreateAccount,
   createAccountInProgress,
@@ -156,9 +155,6 @@ const CreateAccountDialog = ({
           />
         </LeftLoader>,
       ]}
-      secondaryActions={[
-        <HelpButton key="help" helpPagePath={'/interface/profile'} />,
-      ]}
       cannotBeDismissed={createAccountInProgress}
       onApply={createAccount}
       onRequestClose={() => {
@@ -174,14 +170,10 @@ const CreateAccountDialog = ({
         justifyContent="center"
         alignItems="center"
       >
-        <GDevelopGLogo fontSize="large" />
         <Text size="title" align="center">
           <Trans>Sign up for free!</Trans>
         </Text>
         <Column noMargin alignItems="center">
-          <Text size="body2" noMargin align="center">
-            <Trans>Welcome to GDevelop!</Trans>
-          </Text>
           <LineStackLayout noMargin>
             <Text size="body2" noMargin align="center">
               <Trans>Already a member?</Trans>
@@ -245,14 +237,6 @@ const CreateAccountDialog = ({
                 }}
                 disabled={createAccountInProgress}
               />
-              <Checkbox
-                label={<Trans>I want to receive the GDevelop Newsletter</Trans>}
-                checked={getNewsletterEmail}
-                onCheck={(e, value) => {
-                  setGetNewsletterEmail(value);
-                }}
-                disabled={createAccountInProgress}
-              />
               {/*
                 This input is needed so that the browser submits the form when
                 Enter key is pressed. See https://stackoverflow.com/questions/4196681/form-not-submitting-when-pressing-enter
@@ -261,11 +245,6 @@ const CreateAccountDialog = ({
             </ColumnStackLayout>
           </form>
         </div>
-        <BackgroundText>
-          <MarkdownText
-            translatableSource={t`By creating an account and using GDevelop, you agree to the [Terms and Conditions](https://gdevelop.io/page/terms-and-conditions).`}
-          />
-        </BackgroundText>
       </ColumnStackLayout>
     </Dialog>
   );

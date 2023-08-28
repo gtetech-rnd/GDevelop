@@ -56,7 +56,6 @@ export type RegisterForm = {|
   email: string,
   password: string,
   username: string,
-  getNewsletterEmail: boolean,
 |};
 
 export type AdditionalUserInfoForm = {|
@@ -188,7 +187,6 @@ export default class Authentication {
         throw error;
       });
   };
-
   login = (form: LoginForm): Promise<void> => {
     return signInWithEmailAndPassword(this.auth, form.email, form.password)
       .then(userCredentials => {
@@ -199,7 +197,6 @@ export default class Authentication {
         throw error;
       });
   };
-
   forgotPassword = (form: ForgotPasswordForm): Promise<void> => {
     return sendPasswordResetEmail(this.auth, form.email);
   };

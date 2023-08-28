@@ -13,7 +13,7 @@ export default function verifyProjectContent(
         i18n._(t`Unable to open this file.`),
         i18n._(
           t`This file is an extension file for GDevelop 5. You should instead import it, using the window to add a new extension to your project.`
-        ),
+        )
       ].join('\n'),
       rawError: undefined,
       errorId: 'extension-opened-as-project-error',

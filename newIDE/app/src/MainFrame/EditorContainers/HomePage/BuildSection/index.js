@@ -144,7 +144,7 @@ const ProjectFileListItem = ({
   file,
   storageProviders,
   onOpenRecentFile,
-  isWindowWidthMediumOrLarger,
+  isWindowWidthMediumOrLarger,                                     
 }: {|
   file: FileMetadataAndStorageProviderName,
   storageProviders: Array<StorageProvider>,

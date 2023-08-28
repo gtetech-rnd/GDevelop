@@ -139,13 +139,13 @@ export default function PreviewAndPublishButtons({
         id={'toolbar-preview-button'}
         buildMenuTemplate={previewBuildMenuTemplate}
       />
-      <ResponsiveRaisedButton
+      {/* <ResponsiveRaisedButton
         primary
         onClick={exportProject}
         icon={<PublishIcon />}
         label={<Trans>Publish</Trans>}
         id={'toolbar-publish-button'}
-      />
+      /> */}
     </LineStackLayout>
   );
 }

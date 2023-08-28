@@ -24,11 +24,6 @@ const styles = {
 
 const communityItems = [
   {
-    onClick: () => Window.openExternalURL('https://forum.gdevelop.io'),
-    icon: <Messages fontSize="small" />,
-    label: <Trans>GDevelop Forums</Trans>,
-  },
-  {
     onClick: () =>
       Window.openExternalURL('https://www.youtube.com/c/GDevelopApp'),
     icon: <YouTube fontSize="small" htmlColor="#FF0000" />,

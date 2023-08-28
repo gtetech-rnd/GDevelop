@@ -22,7 +22,6 @@ import ValueTypeEditor from './ValueTypeEditor';
 import ThreeDotsMenu from '../../UI/CustomSvgIcons/ThreeDotsMenu';
 import Add from '../../UI/CustomSvgIcons/Add';
 import useForceUpdate from '../../Utils/UseForceUpdate';
-
 const gd: libGDevelop = global.gd;
 
 type Props = {|

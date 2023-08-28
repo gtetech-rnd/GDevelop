@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import AuthenticatedUserContext from '../Profile/AuthenticatedUserContext';
-import { Line, Spacer } from '../UI/Grid';
+import { Line } from '../UI/Grid'; // Removed Spacer import
 import Text from '../UI/Text';
 import RaisedButton from '../UI/RaisedButton';
 import FlatButton from '../UI/FlatButton';
@@ -35,57 +35,45 @@ const StorageProviderListItem = ({
   onChooseProvider,
 }: Props) => {
   const authenticatedUser = React.useContext(AuthenticatedUserContext);
-
   const classesForListItem = useListItemStyles();
-
   const shouldDisplayAuthenticationButtons =
     storageProvider.needUserAuthentication && !authenticatedUser.authenticated;
-
   const isLineClickable =
     !storageProvider.disabled &&
     (!storageProvider.needUserAuthentication ||
       !shouldDisplayAuthenticationButtons);
 
-  return (
-    <I18n>
-      {({ i18n }) => (
-        <ListItem
-          classes={classesForListItem}
-          key={storageProvider.internalName}
-          disabled={storageProvider.disabled}
-          onClick={
-            isLineClickable ? () => onChooseProvider(storageProvider) : null
-          }
-          button={isLineClickable}
-        >
-          <ListItemIcon>
-            {storageProvider.renderIcon
-              ? storageProvider.renderIcon({})
-              : undefined}
-          </ListItemIcon>
-          <ListItemText>
-            <Line justifyContent="space-between" alignItems="center">
-              <Text noMargin>{i18n._(storageProvider.name)}</Text>
-              {shouldDisplayAuthenticationButtons && (
-                <Line noMargin>
-                  <FlatButton
-                    label={i18n._(t`Create an Account`)}
-                    onClick={() => authenticatedUser.onCreateAccount()}
-                  />
-                  <Spacer />
-                  <RaisedButton
-                    primary
-                    label={i18n._(t`Login with GDevelop`)}
-                    onClick={() => authenticatedUser.onLogin()}
-                  />
-                </Line>
-              )}
-            </Line>
-          </ListItemText>
-        </ListItem>
-      )}
-    </I18n>
-  );
+      console.log('storageProvider', storageProvider);
+
+      return (
+        <I18n>
+          {({ i18n }) => (
+            <>
+              {(storageProvider.internalName && storageProvider.internalName !== null) ? (
+                <ListItem
+                  classes={classesForListItem}
+                  key={storageProvider.internalName}
+                  disabled={storageProvider.disabled && !storageProvider.internalName===null}
+                  onClick={isLineClickable ? () => onChooseProvider(storageProvider) : null}
+                  button={isLineClickable}
+                > 
+                  <ListItemIcon>
+                    {storageProvider.renderIcon ? storageProvider.renderIcon({}) : undefined}
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Line justifyContent="space-between" alignItems="center">
+                      <Text noMargin>{i18n._(storageProvider.name)}</Text>
+                    </Line>
+                  </ListItemText>
+                </ListItem>
+              ) : null
+              }
+            </>
+          )}
+        </I18n>
+      );
 };
 
 export default StorageProviderListItem;
+
+

@@ -74,14 +74,6 @@ export const HomePageHeader = ({
           </Column>
           <Column>
             <LineStackLayout noMargin alignItems="center">
-              {!electron && !isNativeMobileApp() && !isMobileScreen && (
-                <FlatButton
-                  label={<Trans>Download desktop app</Trans>}
-                  onClick={() =>
-                    Window.openExternalURL('https://gdevelop.io/download')
-                  }
-                />
-              )}
               <UserChip onOpenProfile={onOpenProfile} />
               <TextButton
                 label={i18n.language.toUpperCase()}

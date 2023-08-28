@@ -200,7 +200,7 @@ export const HomePage = React.memo<Props>(
       );
 
       const [activeTab, setActiveTab] = React.useState<HomeTab>(
-        showGetStartedSection ? 'get-started' : 'build'
+         'build'
       );
 
       return (
@@ -219,17 +219,6 @@ export const HomePage = React.memo<Props>(
                     {activeTab !== 'community' && !!announcements && (
                       <AnnouncementsFeed canClose level="urgent" addMargins />
                     )}
-                    {activeTab === 'get-started' && (
-                      <GetStartedSection
-                        onTabChange={setActiveTab}
-                        onCreateProject={() =>
-                          onCreateProject(/*exampleShortHeader=*/ null)
-                        }
-                        selectInAppTutorial={selectInAppTutorial}
-                        showGetStartedSection={showGetStartedSection}
-                        setShowGetStartedSection={setShowGetStartedSection}
-                      />
-                    )}
                     {activeTab === 'build' && (
                       <BuildSection
                         ref={buildSectionRef}
@@ -247,25 +236,6 @@ export const HomePage = React.memo<Props>(
                         }
                         onOpenRecentFile={onOpenRecentFile}
                         storageProviders={storageProviders}
-                      />
-                    )}
-                    {activeTab === 'learn' && (
-                      <LearnSection
-                        onCreateProject={() =>
-                          onCreateProject(/*exampleShortHeader=*/ null)
-                        }
-                        onTabChange={setActiveTab}
-                        onOpenHelpFinder={onOpenHelpFinder}
-                        selectInAppTutorial={selectInAppTutorial}
-                      />
-                    )}
-                    {activeTab === 'play' && <PlaySection />}
-                    {activeTab === 'community' && <CommunitySection />}
-                    {activeTab === 'shop' && (
-                      <StoreSection
-                        project={project}
-                        resourceManagementProps={resourceManagementProps}
-                        canInstallPrivateAsset={canInstallPrivateAsset}
                       />
                     )}
                   </Column>

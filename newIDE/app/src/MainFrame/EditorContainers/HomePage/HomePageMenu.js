@@ -51,12 +51,7 @@ export const styles = {
 };
 
 export type HomeTab =
-  | 'get-started'
-  | 'build'
-  | 'learn'
-  | 'play'
-  | 'community'
-  | 'shop';
+  | 'build';
 
 const tabs: {
   label: React.Node,
@@ -65,40 +60,10 @@ const tabs: {
   id: string,
 }[] = [
   {
-    label: <Trans>Get Started</Trans>,
-    tab: 'get-started',
-    id: 'home-get-started-tab',
-    getIcon: color => <Sun fontSize="small" color={color} />,
-  },
-  {
     label: <Trans>Build</Trans>,
     tab: 'build',
     id: 'home-build-tab',
     getIcon: color => <PickAxeIcon fontSize="small" color={color} />,
-  },
-  {
-    label: <Trans>Shop</Trans>,
-    tab: 'shop',
-    id: 'home-shop-tab',
-    getIcon: color => <Store fontSize="small" color={color} />,
-  },
-  {
-    label: <Trans>Learn</Trans>,
-    tab: 'learn',
-    id: 'home-learn-tab',
-    getIcon: color => <SchoolIcon fontSize="small" color={color} />,
-  },
-  {
-    label: <Trans>Play</Trans>,
-    tab: 'play',
-    id: 'home-play-tab',
-    getIcon: color => <GoogleControllerIcon fontSize="small" color={color} />,
-  },
-  {
-    label: <Trans>Community</Trans>,
-    tab: 'community',
-    id: 'home-community-tab',
-    getIcon: color => <WebIcon fontSize="small" color={color} />,
   },
 ];
 type Props = {|
@@ -134,12 +99,6 @@ export const HomePageMenu = ({
       id: 'settings',
       onClick: onOpenPreferences,
       getIcon: color => <Preferences fontSize="small" color={color} />,
-    },
-    {
-      label: <Trans>About GDevelop</Trans>,
-      id: 'about-gdevelop',
-      onClick: onOpenAbout,
-      getIcon: color => <GDevelopGLogo fontSize="small" color={color} />,
     },
   ];
 

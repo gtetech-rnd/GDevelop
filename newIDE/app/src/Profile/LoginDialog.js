@@ -17,7 +17,6 @@ import { getEmailErrorText, getPasswordErrorText } from './CreateAccountDialog';
 import { ColumnStackLayout } from '../UI/Layout';
 import HelpButton from '../UI/HelpButton';
 import Link from '../UI/Link';
-import GDevelopGLogo from '../UI/CustomSvgIcons/GDevelopGLogo';
 import ForgotPasswordDialog from './ForgotPasswordDialog';
 import { useResponsiveWindowWidth } from '../UI/Reponsive/ResponsiveWindowMeasurer';
 
@@ -80,8 +79,8 @@ const LoginDialog = ({
       />
     </LeftLoader>,
   ];
-
-  return (
+                                                                                                                                                                                                                      
+  return(
     <Dialog
       title={null} // This dialog has a custom design to be more welcoming, the title is set in the content.
       id="login-dialog"
@@ -92,7 +91,7 @@ const LoginDialog = ({
       cannotBeDismissed={loginInProgress}
       onRequestClose={onClose}
       onApply={() => {
-        // This is a hack to avoid submitting the login form
+        // This is a hack to avoid submitting the login form 
         // when submitting the forgot password form.
         if (isForgotPasswordDialogOpen) return;
         doLogin();
@@ -107,7 +106,6 @@ const LoginDialog = ({
         justifyContent="center"
         alignItems="center"
       >
-        <GDevelopGLogo fontSize="large" />
         <Text size="title" align="center">
           <Trans>Log in to your account</Trans>
         </Text>

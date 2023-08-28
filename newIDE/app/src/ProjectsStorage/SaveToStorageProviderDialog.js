@@ -36,15 +36,15 @@ const SaveToStorageProviderDialog = ({
       maxWidth="sm"
     >
       <List useGap>
-        {storageProviders
-          .filter(storageProvider => !storageProvider.hiddenInSaveDialog)
-          .map(storageProvider => (
-            <StorageProviderListItem
-              key={storageProvider.internalName}
-              onChooseProvider={onChooseProvider}
-              storageProvider={storageProvider}
-            />
-          ))}
+      {storageProviders
+        .filter(storageProvider => storageProvider && !storageProvider.hiddenInSaveDialog)
+        .map(storageProvider => (
+      <StorageProviderListItem
+          key={storageProvider.internalName}
+          onChooseProvider={onChooseProvider}
+          storageProvider={storageProvider}
+        />
+      ))}
       </List>
     </Dialog>
   );

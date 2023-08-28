@@ -229,12 +229,12 @@ export default function DownloadFileSaveAsDialog({ project, onDone }: Props) {
     <Dialog
       title={<Trans>Download a copy</Trans>}
       actions={[
-        <FlatButton
-          key="download"
-          label={<Trans>Download GDevelop desktop version</Trans>}
-          primary={false}
-          onClick={() => Window.openExternalURL('http://gdevelop.io')}
-        />,
+        // <FlatButton
+        //   key="download"
+        //   label={<Trans>Download GDevelop desktop version</Trans>}
+        //   primary={false}
+        //   onClick={() => Window.openExternalURL('http://gdevelop.io')}
+        // />,
         <FlatButton
           key="close"
           label={<Trans>Close</Trans>}
@@ -249,11 +249,10 @@ export default function DownloadFileSaveAsDialog({ project, onDone }: Props) {
       <ColumnStackLayout noMargin>
         <Text>
           <Trans>
-            You can download the file of your game to continue working on it
-            using the full GDevelop version:
+            You can download the file of your game 
           </Trans>
         </Text>
-        <Line noMargin expand justifyContent="center">
+        <Line noMargin expand justifyContent="right">
           {zippedProjectBlob ? (
             <BlobDownloadUrlHolder blob={zippedProjectBlob}>
               {blobDownloadUrl => (
@@ -263,7 +262,7 @@ export default function DownloadFileSaveAsDialog({ project, onDone }: Props) {
                     openBlobDownloadUrl(blobDownloadUrl, 'gdevelop-game.zip')
                   }
                   label={
-                    <Trans>Download the compressed game and resources</Trans>
+                    <Trans>Download the compressed file for your game</Trans>
                   }
                 />
               )}

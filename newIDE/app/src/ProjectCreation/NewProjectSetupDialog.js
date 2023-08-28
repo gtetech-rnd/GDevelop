@@ -376,168 +376,31 @@ const NewProjectSetupDialog = ({
               type="text"
               errorText={projectNameError}
               disabled={isLoading}
-              value={projectName}
+              // value={projectName}
               onChange={_onChangeProjectName}
               floatingLabelText={<Trans>Project name</Trans>}
-              endAdornment={
-                <IconButton
-                  size="small"
-                  onClick={() => setProjectName(generateProjectName())}
-                  tooltip={t`Generate random name`}
-                  disabled={isLoading}
-                >
-                  <Refresh />
-                </IconButton>
-              }
-              autoFocus="desktop"
-              maxLength={100}
+              // endAdornment={
+              //   <IconButton
+              //     size="small"
+              //     onClick={() => setProjectName(generateProjectName())}
+              //     tooltip={"Refesh"}
+              //     disabled={isLoading}
+              //   >
+              //     <Refresh />
+              //   </IconButton>
+              // }
+              // autoFocus="desktop"
+              // maxLength={100}
             />
-            <SelectField
-              fullWidth
-              disabled={isLoading}
-              floatingLabelText={<Trans>Where to store this project</Trans>}
-              value={storageProvider.internalName}
-              onChange={(e, i, newValue: string) => {
-                setNewProjectsDefaultStorageProviderName(newValue);
-                const newStorageProvider =
-                  storageProviders.find(
-                    ({ internalName }) => internalName === newValue
-                  ) || emptyStorageProvider;
-                setStorageProvider(newStorageProvider);
-
-                // Reset the save as location, to avoid mixing it between storage providers
-                // and give a chance to the storage provider to set it to a default value.
-                setSaveAsLocation(null);
-              }}
-            >
-              {storageProviders
-                // Filter out storage providers who are supposed to be used for storage initially
-                // (for example: the "URL" storage provider, which is read only,
-                // or the "DownloadFile" storage provider, which is not a persistent storage).
-                .filter(
-                  storageProvider =>
-                    !!storageProvider.onRenderNewProjectSaveAsLocationChooser
-                )
-                .map(storageProvider => (
-                  <SelectOption
-                    key={storageProvider.internalName}
-                    value={storageProvider.internalName}
-                    label={storageProvider.name}
-                    disabled={storageProvider.disabled}
-                  />
-                ))}
-              {!electron && (
-                // Only show the ability to start a project without saving on the web-app.
-                // On the local app, prefer to always have something saved so that the user is not blocked
-                // when they want to add their own resources or use external editors.
-                <SelectOption
-                  value={emptyStorageProvider.internalName}
-                  label={t`Don't save this project now`}
-                />
-              )}
-            </SelectField>
-            {needUserAuthenticationForStorage && (
-              <Paper background="dark" variant="outlined">
-                <Line justifyContent="center">
-                  <CreateProfile
-                    onLogin={authenticatedUser.onLogin}
-                    onCreateAccount={authenticatedUser.onCreateAccount}
-                    message={
-                      <Trans>
-                        Create an account to store your project online.
-                      </Trans>
-                    }
-                  />
-                </Line>
-              </Paper>
-            )}
-            {!needUserAuthenticationForStorage &&
-              storageProvider.onRenderNewProjectSaveAsLocationChooser &&
-              storageProvider.onRenderNewProjectSaveAsLocationChooser({
-                projectName,
-                saveAsLocation,
-                setSaveAsLocation,
-                newProjectsDefaultFolder,
-              })}
-            {!selectedExampleShortHeader && (
-              <ColumnStackLayout noMargin expand>
-                <DismissableAlertMessage
-                  kind="info"
-                  identifier="new-generate-project-from-prompt"
-                >
-                  <Trans>NEW! Generate a pre-made AI scene with assets.</Trans>
-                </DismissableAlertMessage>
-                <LineStackLayout
-                  expand
-                  noMargin
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <RobotIcon />
-                  <TextField
-                    type="text"
-                    multiline
-                    maxLength={200}
-                    fullWidth
-                    disabled={
-                      isLoading ||
-                      !authenticatedUser.authenticated ||
-                      !isOnline ||
-                      !canGenerateProjectFromPrompt
-                    }
-                    value={generationPrompt}
-                    onChange={(e, text) => setGenerationPrompt(text)}
-                    floatingLabelText={<Trans>AI prompt</Trans>}
-                    floatingLabelFixed
-                    translatableHintText={
-                      !authenticatedUser.authenticated || !isOnline
-                        ? t`Log in to generate a project from a prompt`
-                        : t`Type a prompt yourself or generate a random one`
-                    }
-                    endAdornment={
-                      <IconButton
-                        size="small"
-                        onClick={() => setGenerationPrompt(generatePrompt())}
-                        tooltip={t`Generate random prompt`}
-                        disabled={
-                          isLoading ||
-                          !authenticatedUser.authenticated ||
-                          !isOnline ||
-                          !canGenerateProjectFromPrompt
-                        }
-                      >
-                        <Refresh />
-                      </IconButton>
-                    }
-                  />
-                </LineStackLayout>
-                {authenticatedUser.authenticated &&
-                  !canGenerateProjectFromPrompt && (
-                    <GetSubscriptionCard subscriptionDialogOpeningReason="Generate project from prompt">
-                      <Line>
-                        <Column noMargin>
-                          <Text noMargin>
-                            <Trans>
-                              You've used all your daily pre-made AI scenes!
-                              Generate as many as you want with a subscription.
-                            </Trans>
-                          </Text>
-                        </Column>
-                      </Line>
-                    </GetSubscriptionCard>
-                  )}
-                <Text size="sub-title">
-                  <Trans>Advanced File options</Trans>
-                </Text>
-                <Checkbox
+            <Checkbox
                   checked={optimizeForPixelArt}
                   label={<Trans>Optimize for Pixel Art</Trans>}
                   onCheck={(e, checked) => {
                     setOptimizeForPixelArt(checked);
                   }}
                   disabled={isLoading}
-                />
-                <Checkbox
+            />
+            <Checkbox
                   checked={allowPlayersToLogIn}
                   label={<Trans>Allow players to authenticate in-game</Trans>}
                   onCheck={(e, checked) => {
@@ -549,9 +412,7 @@ const NewProjectSetupDialog = ({
                       translatableSource={t`Learn more about [player authentication](https://wiki.gdevelop.io/gdevelop5/all-features/player-authentication).`}
                     />
                   }
-                />
-              </ColumnStackLayout>
-            )}
+            />
             {limits && hasTooManyCloudProjects ? (
               <MaxProjectCountAlertMessage
                 limits={limits}

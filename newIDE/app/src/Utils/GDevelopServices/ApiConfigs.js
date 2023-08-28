@@ -58,7 +58,6 @@ export const GDevelopAssetApi = {
     ? 'https://api-dev.gdevelop.io/asset'
     : 'https://api.gdevelop.io/asset',
 };
-
 export const GDevelopAnalyticsApi = {
   baseUrl: isDev
     ? 'https://api-dev.gdevelop.io/analytics'

@@ -5,6 +5,7 @@ import { type MessageDescriptor } from '../Utils/i18n/MessageDescriptor.flow';
 import { type AppArguments } from '../Utils/Window';
 import { type AuthenticatedUser } from '../Profile/AuthenticatedUserContext';
 import { type MenuItemTemplate } from '../UI/Menu/Menu.flow';
+import internal from 'stream';
 
 /**
  * The data containing the file/url/file identifier to be loaded
@@ -91,7 +92,7 @@ export type StorageProviderOperations = {|
     fileMetadata: FileMetadata
   ) => Promise<void>,
 
-  // Project saving:
+  Project saving:
   onSaveProject?: (
     project: gdProject,
     fileMetadata: FileMetadata,
